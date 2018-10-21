@@ -5,7 +5,7 @@ The enrollment option is set to first-come-first-serve. When the course is full,
 
 ## Requirements
 - java 8
-- node.js
+- node.js version 8.12.0 above
 - npm or yarn
 
 ## Setup
