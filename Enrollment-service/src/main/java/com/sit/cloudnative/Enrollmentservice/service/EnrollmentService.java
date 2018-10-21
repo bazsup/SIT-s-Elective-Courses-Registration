@@ -19,8 +19,6 @@ public class EnrollmentService {
   private EnrollmentRepositoryInterface enrollmentRepositoryInterface;
 
   public Enrollment enroll(Enrollment enrollment) {
-
-
     EnrollmentIdentity enrollmentIdentity = enrollment.getEnrollmentIdentity();
     Long courseId = enrollmentIdentity.getCourseId();
     String studentId = enrollmentIdentity.getStudentId();
@@ -42,9 +40,5 @@ public class EnrollmentService {
     Long numOfEnroll = enrollmentRepositoryInterface.countEnrollmentByStudentId(studentId);
     UserView user = userAdapter.getUserByStudentId(studentId);
     return user.getMaximumCourseCanEnroll() > numOfEnroll;
-  }
-
-  public List<Enrollment> getAllEnroll() {
-    return enrollmentRepositoryInterface.findAll();
   }
 }
