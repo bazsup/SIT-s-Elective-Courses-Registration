@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "76130b35-1927-4b46-9bd0-691bc2db8aa4",
+		"name": "SIT-ECR",
+		"description": "SIT’s Elective Courses Registration (SIT-ECR)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "course",
+			"item": [
+				{
+					"name": "get all course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3041f3b-c994-4f6a-8596-80b4e25ab144",
+								"exec": [
+									"",
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.a('array')",
+									"}) ",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{course_service_api}}/courses",
+							"host": [
+								"{{course_service_api}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bee32de6-7c77-444a-947b-c3711762d33b",
+								"exec": [
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    const keysData = Object.keys(pm.response.json())",
+									"    expectedData = [\"courseId\", \"course\", \"courseName\", \"lecturer\", \"maxAmountStudent\"]",
+									"    pm.expect(keysData).to.eql(expectedData)",
+									"}) ",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{course_service_api}}/course/1",
+							"host": [
+								"{{course_service_api}}"
+							],
+							"path": [
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a new course",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4721267f-470f-44b2-a288-2443824d2260",
+								"exec": [
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    const keysData = Object.keys(pm.response.json())",
+									"    const expectedData = [\"courseId\", \"course\", \"courseName\", \"lecturer\", \"maxAmountStudent\"]",
+									"    pm.expect(keysData).to.eql(expectedData)",
+									"}) ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"course\": \"INT491\",\n    \"courseName\": \"Information Retrieval\",   \n    \"lecturer\": \"Xiangmin Zhang Ph.D\",\n\t\"maxAmountStudent\": 30\n}"
+						},
+						"url": {
+							"raw": "{{course_service_api}}/course",
+							"host": [
+								"{{course_service_api}}"
+							],
+							"path": [
+								"course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06477a8d-d1f1-4b72-ada7-32148b76c77a",
+								"exec": [
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    const keysData = Object.keys(pm.response.json())",
+									"    const expectedData = [\"courseId\", \"course\", \"courseName\", \"lecturer\", \"maxAmountStudent\"]",
+									"    pm.expect(keysData).to.eql(expectedData)",
+									"}) ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"courseId\": 1,\n\t\"course\": \"INT492\",\n\t\"courseName\": \"Big Data Analytics\",\n\t\"lecturer\": \"Dr.Praisan Padungweang\",\n\t\"maxAmountStudent\": 10\n}"
+						},
+						"url": {
+							"raw": "{{course_service_api}}/course/1",
+							"host": [
+								"{{course_service_api}}"
+							],
+							"path": [
+								"course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete course by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53de01a9-2b89-435b-ad56-291e964ebdf3",
+								"exec": [
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    const responseData = pm.response.json()",
+									"    const expectedData = {",
+									"     \"headers\": {},",
+									"     \"body\": null,",
+									"     \"statusCode\": \"OK\",",
+									"     \"statusCodeValue\": 200",
+									"    }",
+									"    pm.expect(responseData).to.eql(expectedData)",
+									"}) ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{course_service_api}}/course/3",
+							"host": [
+								"{{course_service_api}}"
+							],
+							"path": [
+								"course",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "b1ed04d3-5646-4de7-ac38-6d62a5175250",
+			"key": "course_service_api",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}
