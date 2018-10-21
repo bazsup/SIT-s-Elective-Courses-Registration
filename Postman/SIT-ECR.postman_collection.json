@@ -403,6 +403,69 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "enrollment",
+			"item": [
+				{
+					"name": "enroll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "21409b1b-e60d-4c5b-a213-c5a3c77344ea",
+								"exec": [
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    const keysData = Object.keys(pm.response.json())",
+									"    const expectedData = [\"enrollmentIdentity\"]",
+									"    pm.expect(keysData).to.eql(expectedData)",
+									"}) ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"enrollmentIdentity\": {\n\t\t\"courseId\": 1,\n\t\t\"studentId\": \"59130500137\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{enrollment_service_api}}/enroll",
+							"host": [
+								"{{enrollment_service_api}}"
+							],
+							"path": [
+								"enroll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -429,15 +492,21 @@
 	],
 	"variable": [
 		{
-			"id": "97f49c5a-70ba-473e-874b-f3f40dac6dc8",
+			"id": "09c59ea2-75f2-4b83-8a85-aeeb7431468a",
 			"key": "course_service_api",
 			"value": "http://localhost:8081",
 			"type": "string"
 		},
 		{
-			"id": "e3d2d29f-e640-4fd6-a9f7-d9e00269b8f6",
+			"id": "bfb093ae-c8f0-468b-b1fc-05778665c511",
 			"key": "user_service_api",
 			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"id": "39241936-e425-43f8-8a76-8d01fddb3c21",
+			"key": "enrollment_service_api",
+			"value": "http://localhost:8082",
 			"type": "string"
 		}
 	]
