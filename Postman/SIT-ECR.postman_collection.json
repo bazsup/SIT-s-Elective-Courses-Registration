@@ -291,13 +291,153 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get all user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "26c7d776-0281-4728-ab6c-b5dafd1bb9d5",
+								"exec": [
+									"",
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.a('array')",
+									"}) ",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user_service_api}}/users",
+							"host": [
+								"{{user_service_api}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9a495165-4238-41b1-8342-1d27107f7926",
+								"exec": [
+									"pm.test(\"Returning a valid response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Content-Type is json\", function () {",
+									"    var contentType = postman.getResponseHeader(\"Content-Type\")",
+									"    var expectContentType = \"application/json;charset=UTF-8\"",
+									"    pm.expect(contentType).to.eql(expectContentType)",
+									"});",
+									"",
+									"",
+									"pm.test(\"ResponseBody is valid\", function () {",
+									"    const keysData = Object.keys(pm.response.json())",
+									"    const expectedData = [\"studentId\", \"firstname\", \"lastname\", \"department\", \"faculty\", \"year\", \"maximumCourseCanEnroll\"]",
+									"    pm.expect(keysData).to.eql(expectedData)",
+									"}) ",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{user_service_api}}/user/59130500137",
+							"host": [
+								"{{user_service_api}}"
+							],
+							"path": [
+								"user",
+								"59130500137"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "50ddc466-14ef-4457-a06d-dd8d49b8c84e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3d777a1a-8a11-42e0-a3a4-01c851317f6f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
 		{
-			"id": "b1ed04d3-5646-4de7-ac38-6d62a5175250",
+			"id": "97f49c5a-70ba-473e-874b-f3f40dac6dc8",
 			"key": "course_service_api",
 			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"id": "e3d2d29f-e640-4fd6-a9f7-d9e00269b8f6",
+			"key": "user_service_api",
+			"value": "http://localhost:8080",
 			"type": "string"
 		}
 	]
