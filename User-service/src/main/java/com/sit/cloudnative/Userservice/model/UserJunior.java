@@ -1,17 +1,17 @@
-package com.sit.cloudnative.Userservice;
+package com.sit.cloudnative.Userservice.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("2")
-public class UserSophomore extends User {
+@DiscriminatorValue("3")
+public class UserJunior extends User {
 
-  private static byte year = 2;
+  private static byte year = 3;
 
   @Override
   public byte getYear() {
-    return this.year;
+    return year;
   }
 
   @Override
@@ -21,6 +21,6 @@ public class UserSophomore extends User {
 
   @Override
   public int getMaximumCourseCanEnroll() {
-    return 0;
+    return 2;
   }
 }

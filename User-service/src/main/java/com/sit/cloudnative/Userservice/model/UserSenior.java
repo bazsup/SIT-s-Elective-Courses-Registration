@@ -1,4 +1,4 @@
-package com.sit.cloudnative.Userservice;
+package com.sit.cloudnative.Userservice.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

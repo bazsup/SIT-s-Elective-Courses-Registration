@@ -1,13 +1,13 @@
-package com.sit.cloudnative.Userservice;
+package com.sit.cloudnative.Userservice.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("1")
-public class UserFreshmen extends User {
+@DiscriminatorValue("2")
+public class UserSophomore extends User {
 
-  private static byte year = 1;
+  private static byte year = 2;
 
   @Override
   public byte getYear() {
