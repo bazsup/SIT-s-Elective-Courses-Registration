@@ -81,6 +81,13 @@ COURSE_SERVICE_DB_DRIVER=com.mysql.jdbc.Driver
 COURSE_SERVICE_DB_HOST=jdbc:mysql://bassup.tk/cloudnative-course
 COURSE_SERVICE_DB_USERNAME=bazsup
 COURSE_SERVICE_DB_PASSWORD=wowthisisapassword
+
+# configuration env for Enrollment-service
+ENROLLMENT_SERVICE_PORT=8082
+ENROLLMENT_SERVICE_DB_DRIVER=com.mysql.jdbc.Driver
+ENROLLMENT_SERVICE_DB_HOST=jdbc:mysql://bassup.tk/cloudnative-enrollment
+ENROLLMENT_SERVICE_DB_USERNAME=bazsup
+ENROLLMENT_SERVICE_DB_PASSWORD=wowthisisapassword
 ```
 
 ## Owner
